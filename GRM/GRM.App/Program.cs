@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace GRM.App
 {
@@ -12,6 +13,10 @@ namespace GRM.App
 
             var partnerName = Console.ReadLine();
 
+            var partner = dataService
+                .GetPartners()
+                .Single(_ => _.Name.Equals(partnerName, StringComparison.CurrentCultureIgnoreCase));
+
             Console.WriteLine("Enter Effective Date");
 
             var effectiveDateEntered = Console.ReadLine();
@@ -21,7 +26,7 @@ namespace GRM.App
                 effectiveDate = DateTime.Now;
             }
 
-            var partnerService = new PartnerService(partnerName, dataService);
+            var partnerService = new PartnerService(partner, dataService);
 
             var data = partnerService.GetAvailableProducts(effectiveDate);
 

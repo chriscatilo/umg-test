@@ -22,7 +22,9 @@ namespace GRM.App.Tests
         {
             var dataService = new MockDataService();
 
-            var partnerService = new PartnerService("iTunes", dataService);
+            var iTunes = new Partner { Name = "iTunes", Usages = new[] { DigitalDownload } };
+
+            var partnerService = new PartnerService(iTunes, dataService);
 
             var actual = partnerService.GetAvailableProducts(DateTime.Parse("1 March 2012"));
 
@@ -31,22 +33,22 @@ namespace GRM.App.Tests
                 new Data
                 {
                     Artist = "Monkey Claw",
-                    Title = "Iron Horse",
-                    Usages = new [] { DigitalDownload, Streaming },
-                    StartDate = DateTime.Parse("1 June 2012")
+                    Title = "Black Mountain",
+                    Usages = new [] { DigitalDownload },
+                    StartDate = DateTime.Parse("1 Feb 2012")
                 },
                 new Data
                 {
                     Artist = "Monkey Claw",
                     Title = "Motor Mouth",
-                    Usages = new [] { DigitalDownload, Streaming },
+                    Usages = new [] { DigitalDownload },
                     StartDate = DateTime.Parse("1 Mar 2011")
                 },
                 new Data
                 {
                     Artist = "Tinie Tempah",
                     Title = "Frisky (Live from SoHo)",
-                    Usages = new [] { DigitalDownload, Streaming },
+                    Usages = new [] { DigitalDownload },
                     StartDate = DateTime.Parse("1 Feb 2012")
                 },
                 new Data
